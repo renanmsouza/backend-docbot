@@ -10,15 +10,17 @@ export class EmpresaService {
         private empresaRepository: Repository<Empresa>
     ){}
 
-    public async findAll(): Promise<Empresa[]> {
+    public findAll(): Promise<Empresa[]> {
         return this.empresaRepository.find();
     }
 
-    public async findById(id: number): Promise<Empresa> {
-        return this.empresaRepository.findOneBy({id: id})
+    public findById(id: number): Promise<Empresa> {
+        return this.empresaRepository.findOne({where: {
+            id: id
+        }});
     }
 
-    public async save(data: Empresa): Promise<Empresa> {
+    public save(data: Empresa): Promise<Empresa> {
         return this.empresaRepository.save(data);
     }
 }

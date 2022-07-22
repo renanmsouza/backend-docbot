@@ -1,13 +1,18 @@
+import { ParametrosPrioridadeModule } from './ParametrosPrioridade/parametrosPrioridade.module';
+import { UsuarioModule } from './Usuario/usuario.module';
+import { PrioridadeModule } from './Prioridade/prioridade.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmpresaModule } from './empresa/empresa.module';
-import { EmpresaService } from './empresa/empresa.service';
 
 @Module({
   imports: [
-    EmpresaModule, 
+    ParametrosPrioridadeModule,
+    UsuarioModule,
+    PrioridadeModule,
+    EmpresaModule,
     TypeOrmModule.forRoot({
       "type": "mysql",
       "host": "cottonsheep.com.br",
@@ -17,8 +22,11 @@ import { EmpresaService } from './empresa/empresa.service';
       "database": "cotton82_DbDocsToGo",
       "entities": ["dist/**/*.entity{.ts,.js}"],
       "synchronize": false
-    })],
-  controllers: [AppController],
-  providers: [AppService],
+    })
+  ],
+  controllers: [
+    AppController],
+  providers: [
+    AppService],
 })
 export class AppModule { }
