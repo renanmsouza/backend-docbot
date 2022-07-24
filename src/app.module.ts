@@ -1,3 +1,5 @@
+import { ContatoModule } from './Contato/contato.module';
+import { ResponsavelModule } from './Responsavel/responsavel.module';
 import { ParametrosPrioridadeModule } from './ParametrosPrioridade/parametrosPrioridade.module';
 import { UsuarioModule } from './Usuario/usuario.module';
 import { PrioridadeModule } from './Prioridade/prioridade.module';
@@ -9,6 +11,8 @@ import { EmpresaModule } from './empresa/empresa.module';
 
 @Module({
   imports: [
+    ContatoModule,
+    ResponsavelModule,
     ParametrosPrioridadeModule,
     UsuarioModule,
     PrioridadeModule,
