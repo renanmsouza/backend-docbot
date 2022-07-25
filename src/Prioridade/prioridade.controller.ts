@@ -21,7 +21,7 @@ export class PrioridadeController {
         }
     }
 
-    @Get(':id')
+    @Get('listar/:id')
     public async findById(@Param('id') id: number, @Res() res: Response): Promise<Response> {
         try {
             return res.status(200).send(new Resposta('Sucesso', 'Pesquisa por ID', [await this.prioridadeService.findById(id)]))

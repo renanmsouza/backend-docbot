@@ -1,3 +1,7 @@
+import { LogMovimentacaoModule } from './LogMovimentacao/logMovimentacao.module';
+import { EmailResponsavelModule } from './EmailResponsavel/emailResponsavel.module';
+import { ExcecaoContatoModule } from './ExcecaoContato/excecaoContato.module';
+import { ExcecaoResponsavelModule } from './ExcecaoResponsavel/excecaoResponsavel.module';
 import { ContatoModule } from './Contato/contato.module';
 import { ResponsavelModule } from './Responsavel/responsavel.module';
 import { ParametrosPrioridadeModule } from './ParametrosPrioridade/parametrosPrioridade.module';
@@ -11,6 +15,10 @@ import { EmpresaModule } from './empresa/empresa.module';
 
 @Module({
   imports: [
+    LogMovimentacaoModule,
+    EmailResponsavelModule,
+    ExcecaoContatoModule,
+    ExcecaoResponsavelModule,
     ContatoModule,
     ResponsavelModule,
     ParametrosPrioridadeModule,

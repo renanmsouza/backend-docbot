@@ -1,32 +1,35 @@
 import { Controller, Get, Param, Post, Req, Res } from "@nestjs/common";
 import { Request, Response } from "express";
 import { Resposta } from "src/Classes/resposta.class";
-import { ParametrosPrioridade } from "./parametrosPrioridade.entity";
-import { ParametrosPrioridadeService } from "./parametrosprioridade.service";
+import { ExcecaoContato } from "./excecaoContato.entity";
+import { ExcecaoContatoService } from "./excecaoContato.service";
 
-@Controller("parametrosPrioridade")
-export class ParametrosPrioridadeController {
+@Controller("excecaoContato")
+export class ExcecaoContatoController {
     constructor(
-        private readonly parametrosPrioridadeService: ParametrosPrioridadeService
-    ) { }
+        private readonly excecaoContatoService: ExcecaoContatoService
+    ){}
 
     @Get("listar")
     public async findAll(@Res() res: Response): Promise<Response> {
         try {
             return res.status(200)
-                .send(new Resposta('Sucesso', 'Todos os Resultados', await this.parametrosPrioridadeService.findAll()));
+                .send(new Resposta('Sucesso', 'Todos os Resultados', await this.excecaoContatoService.findAll()));
         } catch (error) {
             return res.status(500)
                 .send(new Resposta('Falha ao obter os dados', error.toString(), [error]));
         }
     }
 
-    @Get('listar/:empresa/:prioridade')
-    public async findById(@Param('empresa') empresa: number, @Param('prioridade') prioridade: number
+    @Get('listar/:empresa/:prioridade/:contato')
+    public async findById(
+            @Param('empresa') empresa: number, 
+            @Param('prioridade') prioridade: number, 
+            @Param('contato') contato: number
         , @Res() res: Response): Promise<Response> {
         try {
             return res.status(200).send(new Resposta('Sucesso', 'Pesquisa por ID', 
-                [await this.parametrosPrioridadeService.findById(empresa, prioridade)]))
+                [await this.excecaoContatoService.findById(empresa, prioridade, contato)]))
         } catch (error) {
             return res.status(200).send(new Resposta('Erro', error.toString(), [error]))
         }
@@ -35,9 +38,9 @@ export class ParametrosPrioridadeController {
     @Post("salvar")
     public async salvar(@Req() req: Request, @Res() res: Response): Promise<Response> {
         try {
-            const data: ParametrosPrioridade = req.body as ParametrosPrioridade;
+            const data: ExcecaoContato = req.body as ExcecaoContato;
 
-            await this.parametrosPrioridadeService.save(data);
+            await this.excecaoContatoService.save(data);
 
             return res.status(200)
                 .send(new Resposta('Sucesso', 'Resultado Salvo', [data]));
