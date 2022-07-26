@@ -1,3 +1,7 @@
+import { CelularContatoModule } from './CelularContato/celularContato.module';
+import { CelularResponsavelModule } from './CelularResponsavel/celularResponsavel.module';
+import { EmailContatoModule } from './EmailContato/emailContato.module';
+import { LogSistemaModule } from './LogSistema/logSistema.module';
 import { LogMovimentacaoModule } from './LogMovimentacao/logMovimentacao.module';
 import { EmailResponsavelModule } from './EmailResponsavel/emailResponsavel.module';
 import { ExcecaoContatoModule } from './ExcecaoContato/excecaoContato.module';
@@ -15,6 +19,10 @@ import { EmpresaModule } from './empresa/empresa.module';
 
 @Module({
   imports: [
+    CelularContatoModule,
+    CelularResponsavelModule,
+    EmailContatoModule,
+    LogSistemaModule,
     LogMovimentacaoModule,
     EmailResponsavelModule,
     ExcecaoContatoModule,
