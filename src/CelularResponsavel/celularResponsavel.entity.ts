@@ -1,15 +1,22 @@
 import { Empresa } from "src/empresa/empresa.entity";
 import { Responsavel } from "src/Responsavel/responsavel.entity";
-import { Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("CelularResponsavel")
 export class CelularResponsavel {
+    @PrimaryGeneratedColumn()
     public id: number;
+    @PrimaryColumn()
     public idResponsavel: number;
+    @PrimaryColumn()
     public idEmpresa: number;
+    @Column()
     public codigoInternacional: string;
+    @Column()
     public ddd: string;
+    @Column()
     public celular: string;
+    @Column()
     public principal: boolean;
 
     @ManyToOne(() => Empresa, (empresa: Empresa) => empresa.id)

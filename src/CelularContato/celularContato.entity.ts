@@ -1,16 +1,24 @@
 import { Contato } from "src/Contato/contato.entity";
 import { Empresa } from "src/empresa/empresa.entity";
-import { Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("CelularContato")
 export class CelularContato {
+    @PrimaryGeneratedColumn()
     public id: number;
+    @PrimaryColumn()
     public idEmpresa: number;
+    @PrimaryColumn()
     public idContato: number;
+    @Column()
     public codigoInternacional: string;
+    @Column()
     public ddd: string;
+    @Column()
     public celular: string;
+    @Column()
     public principal: boolean;
+    @Column()
     public obs: string;
 
     @ManyToOne(() => Empresa, (empresa: Empresa) => empresa.id)

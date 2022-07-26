@@ -40,8 +40,10 @@ import { EmpresaModule } from './empresa/empresa.module';
       "username": "cotton82_admin",
       "password": "Cottonsheep1793*",
       "database": "cotton82_DbDocsToGo",
-      "entities": ["dist/**/*.entity{.ts,.js}"],
-      "synchronize": false
+      "entities": [
+        "dist/**/*.entity{.ts,.js}"
+      ],
+      "synchronize": false,
     })
   ],
   controllers: [

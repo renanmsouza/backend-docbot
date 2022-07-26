@@ -1,10 +1,15 @@
-{
+[
+  {
+    "name": "mestre",
     "type": "mysql",
     "host": "cottonsheep.com.br",
     "port": 3306,
     "username": "cotton82_admin",
     "password": "Cottonsheep1793*",
     "database": "cotton82_DbDocsToGo",
-    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "entities": [
+      "dist/**/*.entity{.ts,.js}"
+    ],
     "synchronize": false
   }
+]
