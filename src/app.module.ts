@@ -1,3 +1,5 @@
+import { BaseClienteModule } from './admin/BaseCliente/baseCliente.module';
+import { UsuarioSistemaModule } from './admin/UsuarioSistema/usuarioSistema.module';
 import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './admin/Cliente/cliente.module';
 import { CelularContatoModule } from './entities/CelularContato/celularContato.module';
@@ -21,6 +23,8 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
 
 @Module({
   imports: [
+    BaseClienteModule,
+    UsuarioSistemaModule,
     AuthModule,
     ClienteModule,
     CelularContatoModule,

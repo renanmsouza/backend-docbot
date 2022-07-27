@@ -13,8 +13,6 @@ export class Cliente {
     @Column()
     public email: string;
     @Column()
-    public senha: string;
-    @Column()
     public ativo: boolean;
 
     constructor(
@@ -31,7 +29,6 @@ export class Cliente {
         this.tipo = tipo
         this.documento = documento
         this.email = email
-        this.senha = senha
         this.ativo = ativo
     }
 
