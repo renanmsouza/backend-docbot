@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { encodeString } from "src/utils/bcrypt";
 import { Repository } from "typeorm";
 import { UsuarioSistema } from "./usuarioSistema.entity";
 
@@ -23,6 +24,15 @@ export class UsuarioSistemaService {
     }
 
     public save(data: UsuarioSistema): Promise<UsuarioSistema> {
-        return this.usuarioSistemarepository.save(data);
+        const senha = encodeString(data.senha);
+        return this.usuarioSistemarepository.save({...data, senha});
+    }
+
+    public findByUsuario(usuario: string): Promise<UsuarioSistema> {
+        return this.usuarioSistemarepository.findOne({
+            where: {
+                usuario: usuario
+            }
+        })
     }
 }

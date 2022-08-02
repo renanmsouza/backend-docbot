@@ -11,19 +11,6 @@ export class Usuario {
     @Column()
     public idUsuario: number;
 
-    @OneToOne(() => Cliente, (cliente: Cliente) => cliente.id)
-    @JoinColumn({
-        name: "idCliente"
-    })
-    cliente: Cliente;
-
-    @OneToOne(() => UsuarioSistema, (usuarioSistema: UsuarioSistema) => usuarioSistema.id)
-    @JoinColumn({
-        name: "idUsuario"
-    })
-    usuarioSistema: UsuarioSistema
-
-
     constructor(
         id: number,
         idCliente: number,

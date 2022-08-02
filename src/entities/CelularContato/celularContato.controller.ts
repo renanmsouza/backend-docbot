@@ -15,7 +15,7 @@ export class CelularContatoController {
         try {
             return res.status(200).send(new Resposta('Sucesso', 'Todos os Resultados', [await this.celularContatoService.findAll()]))
         } catch (error) {
-            return res.status(200).send(new Resposta('Erro', error.toString(),[error]))
+            return res.status(500).send(new Resposta('Erro', error.toString(),[error]))
         }
     }
 
@@ -24,7 +24,7 @@ export class CelularContatoController {
         try {
             return res.status(200).send(new Resposta('Sucesso', 'Pesquisa por ID', [await this.celularContatoService.findById(id)]))
         } catch (error) {
-            return res.status(200).send(new Resposta('Erro', error.toString(),[error]))
+            return res.status(500).send(new Resposta('Erro', error.toString(),[error]))
         }    
     }
 
