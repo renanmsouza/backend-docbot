@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Resposta } from 'src/classes/resposta.class';
 import { Contato } from './contato.entity';
 import { ContatoService } from './contato.service';
@@ -10,6 +11,7 @@ export class ContatoController {
         private readonly contatoService: ContatoService
     ){}
    
+    @UseGuards(JwtAuthGuard)
     @Get("listar")
     public async findAll(@Res() res: Response): Promise<Response> {
         try {
@@ -21,6 +23,7 @@ export class ContatoController {
         }
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('listar/:id')
     public async findById(@Param('id') id: number, @Res() res: Response): Promise<Response> {
         try {
@@ -30,6 +33,7 @@ export class ContatoController {
         }    
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post("salvar")
     public async salvar(@Req() req: Request, @Res() res: Response): Promise<Response> {
         try {

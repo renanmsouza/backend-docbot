@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Post, Req, Res } from "@nestjs/common";
+import { Controller, Get, Param, Post, Req, Res, UseGuards } from "@nestjs/common";
 import { Request, Response } from "express";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { Resposta } from "src/classes/resposta.class";
 import { ExcecaoResponsavel } from "./excecaoResponsavel.entity";
 import { ExcecaoResponsavelService } from "./excecaoResponsavel.service";
@@ -10,6 +11,7 @@ export class ExcecaoResponsavelController {
         private readonly excecaoResponsavelService: ExcecaoResponsavelService
     ){}
 
+    @UseGuards(JwtAuthGuard)
     @Get("listar")
     public async findAll(@Res() res: Response): Promise<Response> {
         try {
@@ -21,6 +23,7 @@ export class ExcecaoResponsavelController {
         }
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('listar/:empresa/:prioridade/:responsavel')
     public async findById(
             @Param('empresa') empresa: number, 
@@ -35,6 +38,7 @@ export class ExcecaoResponsavelController {
         }
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post("salvar")
     public async salvar(@Req() req: Request, @Res() res: Response): Promise<Response> {
         try {

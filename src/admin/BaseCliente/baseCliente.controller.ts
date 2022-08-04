@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Post, Req, Res } from "@nestjs/common";
+import { Controller, Get, Param, Post, Req, Res, UseGuards } from "@nestjs/common";
 import { Request, Response } from "express";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { Resposta } from "src/classes/resposta.class";
 import { BaseCliente } from "./baseCliente.entity";
 import { BaseClienteService } from "./baseCliente.service";
@@ -10,6 +11,7 @@ export class BaseClienteController {
         private readonly baseClienteService: BaseClienteService
     ){}
 
+    @UseGuards(JwtAuthGuard)
     @Get("listar")
     public async findAll(@Res() res: Response): Promise<Response> {
         try {
@@ -21,6 +23,7 @@ export class BaseClienteController {
         }
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('listar/:cliente')
     public async findById(@Param('cliente') cliente: number, @Res() res: Response): Promise<Response> {
         try {
@@ -30,6 +33,7 @@ export class BaseClienteController {
         }    
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post("salvar")
     public async salvar(@Req() req: Request, @Res() res: Response): Promise<Response> {
         try {

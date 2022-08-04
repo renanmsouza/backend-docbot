@@ -1,7 +1,7 @@
-import { Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Resposta } from 'src/classes/resposta.class';
-import { encodeString } from 'src/utils/bcrypt';
 import { Usuario } from './usuario.entity';
 import { UsuarioService } from './usuario.service';
 
@@ -11,6 +11,7 @@ export class UsuarioController {
         private readonly usuarioService: UsuarioService
     ){}
 
+    @UseGuards(JwtAuthGuard)
     @Get("listar")
     public async findAll(@Res() res: Response): Promise<Response> {
         try {
@@ -22,6 +23,7 @@ export class UsuarioController {
         }
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('listar/:id')
     public async findById(@Param('id') id: number, @Res() res: Response): Promise<Response> {
         try {
@@ -31,6 +33,7 @@ export class UsuarioController {
         }    
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post("salvar")
     public async salvar(@Req() req: Request, @Res() res: Response): Promise<Response> {
         try {

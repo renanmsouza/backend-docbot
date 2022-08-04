@@ -13,7 +13,7 @@ export class AuthController {
         const login: Login = req.user as Login;
         
         if (login.status == 200) {
-            return res.status(login.status).send(new Resposta('Sucesso', login.mensagem, [login.usuario]))
+            return res.status(login.status).send(new Resposta('Sucesso', login.mensagem, [login]))
         } else {
             return res.status(login.status).send(new Resposta('Falha', login.mensagem, []))    
         }

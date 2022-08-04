@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Cliente } from "../Cliente/cliente.entity";
 
@@ -11,6 +12,7 @@ export class UsuarioSistema {
     public nome: string;
     @Column()
     public usuario: string;
+    @Exclude()
     @Column()
     public senha: string;
     @Column()
