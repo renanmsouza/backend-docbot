@@ -1,3 +1,8 @@
+import { EnvioModule } from './entities/Envio/envio.module';
+import { EmpresasUsuarioModule } from './entities/EmpresasUsuario/empresasUsuario.module';
+import { DocumentoModule } from './entities/Documento/documento.module';
+import { ResponsaveisProjetoModule } from './entities/ResponsaveisProjeto/responsaveisProjeto.module';
+import { ProjetoModule } from './entities/Projeto/projeto.module';
 import { BaseClienteModule } from './admin/BaseCliente/baseCliente.module';
 import { UsuarioSistemaModule } from './admin/UsuarioSistema/usuarioSistema.module';
 import { AuthModule } from './auth/auth.module';
@@ -23,6 +28,11 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
 
 @Module({
   imports: [
+    EnvioModule,
+    EmpresasUsuarioModule,
+    DocumentoModule,
+    ResponsaveisProjetoModule,
+    ProjetoModule,
     BaseClienteModule,
     UsuarioSistemaModule,
     AuthModule,
