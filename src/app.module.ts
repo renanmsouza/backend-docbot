@@ -1,3 +1,5 @@
+import { GrupoContatoModule } from './entities/GrupoContato/grupoContato.module';
+import { RequisicaoModule } from './entities/Requisicao/requisicao.module';
 import { EnvioModule } from './entities/Envio/envio.module';
 import { EmpresasUsuarioModule } from './entities/EmpresasUsuario/empresasUsuario.module';
 import { DocumentoModule } from './entities/Documento/documento.module';
@@ -28,6 +30,8 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
 
 @Module({
   imports: [
+    GrupoContatoModule,
+    RequisicaoModule,
     EnvioModule,
     EmpresasUsuarioModule,
     DocumentoModule,
