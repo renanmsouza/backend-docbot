@@ -1,4 +1,4 @@
-import { UsuarioSistema } from "src/admin/UsuarioSistema/usuarioSistema.entity";
+import { UsuarioSistema } from "src/admin/usuario-sistema/entities/usuario-sistema.entity";
 
 export class Login {
     public usuario: UsuarioSistema;

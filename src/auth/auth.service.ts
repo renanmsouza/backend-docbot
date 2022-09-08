@@ -1,8 +1,7 @@
 import { Injectable, Response } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { response } from 'express';
-import { UsuarioSistema } from 'src/admin/UsuarioSistema/usuarioSistema.entity';
-import { UsuarioSistemaService } from 'src/admin/UsuarioSistema/usuarioSistema.service';
+import { BaseClienteService } from 'src/admin/base-cliente/base-cliente.service';
+import { UsuarioSistemaService } from 'src/admin/usuario-sistema/usuario-sistema.service';
 import { Login } from 'src/classes/login.class';
 import { comparaHashStrings } from 'src/utils/bcrypt';
 import { PayloadInterface } from './interfaces/payload.interface';
@@ -11,15 +10,18 @@ import { PayloadInterface } from './interfaces/payload.interface';
 export class AuthService { 
     constructor(
         private readonly usuarioSistemaService: UsuarioSistemaService,
+        private readonly baseClienteService: BaseClienteService,
         private jwtService: JwtService
     ){}
 
     public async validaUsuario(usuario: string, senha: string): Promise<Login> {
-        const usuarioSisterma = await this.usuarioSistemaService.findByUsuario(usuario);
+        const usuarioSisterma = await this.usuarioSistemaService.findUsuario(usuario);
+        const baseCliente = await this.baseClienteService.findOne(usuarioSisterma.clienteId);
 
         const payload: PayloadInterface = {
+            sub: usuarioSisterma.id,
             username: usuarioSisterma.usuario,
-            sub: usuarioSisterma.id
+            sufixo: baseCliente.sufixo
         }
 
         if (usuarioSisterma && comparaHashStrings(senha, usuarioSisterma.senha)) {

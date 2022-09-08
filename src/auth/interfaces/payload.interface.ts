@@ -1,4 +1,5 @@
 export interface PayloadInterface {
     sub: number,
-    username: string
+    username: string,
+    sufixo: string
 }

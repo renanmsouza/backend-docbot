@@ -1,51 +1,41 @@
-import { Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common/decorators';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { Resposta } from 'src/classes/resposta.class';
-import { Cliente } from './cliente.entity';
 import { ClienteService } from './cliente.service';
+import { CreateClienteDto } from './dto/create-cliente.dto';
+import { UpdateClienteDto } from './dto/update-cliente.dto';
 
-@Controller("cliente")
-export class ClienteController { 
-    constructor(
-        private readonly clienteService: ClienteService
-    ){}
+@Controller('admin/cliente')
+export class ClienteController {
+  constructor(private readonly clienteService: ClienteService) {}
 
-    @UseGuards(JwtAuthGuard)
-    @Get("listar")
-    public async findAll(@Res() res: Response): Promise<Response> {
-        try {
-            return res.status(200)
-                .send(new Resposta('Sucesso', 'Todos os Resultados', await this.clienteService.findAll()));    
-        } catch (error) {
-            return res.status(500)
-                .send(new Resposta('Falha ao obter os dados', error.toString(), [error]));    
-        }
-    }
+  @UseGuards(JwtAuthGuard)
+  @Post()
+  create(@Body() createClienteDto: CreateClienteDto) {
+    return this.clienteService.create(createClienteDto);
+  }
 
-    @UseGuards(JwtAuthGuard)
-    @Get('listar/:id')
-    public async findById(@Param('id') id: number, @Res() res: Response): Promise<Response> {
-        try {
-            return res.status(200).send(new Resposta('Sucesso', 'Pesquisa por ID', [await this.clienteService.findById(id)]))
-        } catch (error) {
-            return res.status(200).send(new Resposta('Erro', error.toString(),[error]))
-        }    
-    }
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  findAll() {
+    return this.clienteService.findAll();
+  }
 
-    @UseGuards(JwtAuthGuard)
-    @Post("salvar")
-    public async salvar(@Req() req: Request, @Res() res: Response): Promise<Response> {
-        try {
-            const data: Cliente = req.body as Cliente;
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.clienteService.findOne(+id);
+  }
 
-            await this.clienteService.save(data);
+  @UseGuards(JwtAuthGuard)
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
+    return this.clienteService.update(+id, updateClienteDto);
+  }
 
-            return res.status(200)
-                .send(new Resposta('Sucesso', 'Resultado Salvo', [data])); 
-        } catch (error) {
-            return res.status(500)
-                .send(new Resposta('Falha ao obter os dados', error.toString(), [error]));      
-        }
-    }
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.clienteService.remove(+id);
+  }
 }

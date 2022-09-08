@@ -1,4 +1,5 @@
-import { Controller, Post, Request, Res, UseGuards } from '@nestjs/common';
+import { Controller, Post, Res, UseGuards } from '@nestjs/common';
+import { Request } from '@nestjs/common/decorators';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { Login } from 'src/classes/login.class';
@@ -13,6 +14,10 @@ export class AuthController {
         const login: Login = req.user as Login;
         
         if (login.status == 200) {
+            req.session.userId = login.usuario.id;
+            req.session.clienteId = login.usuario.clienteId;
+            req.session.authToken = login.autorizacao;
+            
             return res.status(login.status).send(new Resposta('Sucesso', login.mensagem, [login]))
         } else {
             return res.status(login.status).send(new Resposta('Falha', login.mensagem, []))    

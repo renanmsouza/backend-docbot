@@ -1,32 +1,31 @@
-import { GrupoContatoModule } from './entities/GrupoContato/grupoContato.module';
-import { RequisicaoModule } from './entities/Requisicao/requisicao.module';
-import { EnvioModule } from './entities/Envio/envio.module';
-import { EmpresasUsuarioModule } from './entities/EmpresasUsuario/empresasUsuario.module';
-import { DocumentoModule } from './entities/Documento/documento.module';
-import { ResponsaveisProjetoModule } from './entities/ResponsaveisProjeto/responsaveisProjeto.module';
-import { ProjetoModule } from './entities/Projeto/projeto.module';
-import { BaseClienteModule } from './admin/BaseCliente/baseCliente.module';
-import { UsuarioSistemaModule } from './admin/UsuarioSistema/usuarioSistema.module';
 import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './admin/Cliente/cliente.module';
-import { CelularContatoModule } from './entities/CelularContato/celularContato.module';
-import { CelularResponsavelModule } from './entities/CelularResponsavel/celularResponsavel.module';
-import { EmailContatoModule } from './entities/EmailContato/emailContato.module';
-import { LogSistemaModule } from './entities/LogSistema/logSistema.module';
-import { LogMovimentacaoModule } from './entities/LogMovimentacao/logMovimentacao.module';
-import { EmailResponsavelModule } from './entities/EmailResponsavel/emailResponsavel.module';
-import { ExcecaoContatoModule } from './entities/ExcecaoContato/excecaoContato.module';
-import { ExcecaoResponsavelModule } from './entities/ExcecaoResponsavel/excecaoResponsavel.module';
-import { ContatoModule } from './entities/Contato/contato.module';
-import { ResponsavelModule } from './entities/Responsavel/responsavel.module';
-import { ParametrosPrioridadeModule } from './entities/ParametrosPrioridade/parametrosPrioridade.module';
-import { UsuarioModule } from './entities/Usuario/usuario.module';
-import { PrioridadeModule } from './entities/Prioridade/prioridade.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EmpresaModule } from './entities/Empresa/empresa.module';
+import { UsuarioModule } from './client/usuario/usuario.module';
+import { ResponsavelModule } from './client/responsavel/responsavel.module';
+import { ResponsaveisProjetoModule } from './client/responsaveis-projeto/responsaveis-projeto.module';
+import { RequisicaoModule } from './client/requisicao/requisicao.module';
+import { ProjetoModule } from './client/projeto/projeto.module';
+import { PrioridadeModule } from './client/prioridade/prioridade.module';
+import { ParametrosPrioridadeModule } from './client/parametros-prioridade/parametros-prioridade.module';
+import { ExcecaoResponsavelModule } from './client/execao-responsavel/excecao-responsavel.module';
+import { ExcecaoContatoModule } from './client/execao-contato/excecao-contato.module';
+import { EmpresasUsuarioModule } from './client/empresas-usuario/empresas-usuario.module';
+import { EmpresaModule } from './client/empresa/empresa.module';
+import { EmailResponsavelModule } from './client/email-responsavel/email-responsavel.module';
+import { EmailContatoModule } from './client/email-contato/email-contato.module';
+import { DocumentoModule } from './client/documento/documento.module';
+import { ContatosProjetoModule } from './client/contatos-projeto/contatos-projeto.module';
+import { EnvioModule } from './client/envio/envio.module';
+import { BaseClienteModule } from './admin/base-cliente/base-cliente.module';
+import { UsuarioSistemaModule } from './admin/usuario-sistema/usuario-sistema.module';
+import { CelularContatoModule } from './client/celular-contato/celular-contato.module';
+import { CelularResponsavelModule } from './client/celular-responsavel/celular-responsavel.module';
+import { ContatoModule } from './client/contato/contato.module';
+import { GrupoContatoModule } from './client/grupo-contato/grupo-contato.module';
 
 @Module({
   imports: [
@@ -44,8 +43,6 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
     CelularContatoModule,
     CelularResponsavelModule,
     EmailContatoModule,
-    LogSistemaModule,
-    LogMovimentacaoModule,
     EmailResponsavelModule,
     ExcecaoContatoModule,
     ExcecaoResponsavelModule,
@@ -55,6 +52,7 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
     UsuarioModule,
     PrioridadeModule,
     EmpresaModule,
+    ContatosProjetoModule,
     TypeOrmModule.forRoot({
       "type": "mysql",
       "host": "cottonsheep.com.br",
@@ -78,7 +76,7 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
         password: "Cottonsheep1793*",
         database: "cotton82_DB_DocBot_000000",
         entities: [
-          "dist/entities/**/*.entity{.ts,.js}"
+          "dist/client/**/*.entity{.ts,.js}"
         ],
         synchronize: false,
       })
@@ -90,4 +88,5 @@ import { EmpresaModule } from './entities/Empresa/empresa.module';
   providers: [
     AppService],
 })
+
 export class AppModule { }
