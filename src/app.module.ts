@@ -1,6 +1,6 @@
 import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './admin/Cliente/cliente.module';
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -29,6 +29,7 @@ import { GrupoContatoModule } from './client/grupo-contato/grupo-contato.module'
 
 @Module({
   imports: [
+    CacheModule.register(),
     GrupoContatoModule,
     RequisicaoModule,
     EnvioModule,
