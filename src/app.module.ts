@@ -1,6 +1,6 @@
 import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './admin/Cliente/cliente.module';
-import { CacheModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -26,10 +26,10 @@ import { CelularContatoModule } from './client/celular-contato/celular-contato.m
 import { CelularResponsavelModule } from './client/celular-responsavel/celular-responsavel.module';
 import { ContatoModule } from './client/contato/contato.module';
 import { GrupoContatoModule } from './client/grupo-contato/grupo-contato.module';
+import { TenantOptions } from './public/tenant/tenantOptions.class';
 
 @Module({
   imports: [
-    CacheModule.register(),
     GrupoContatoModule,
     RequisicaoModule,
     EnvioModule,
@@ -69,18 +69,7 @@ import { GrupoContatoModule } from './client/grupo-contato/grupo-contato.module'
     ),
     TypeOrmModule.forRootAsync({
       name: "cliente",
-      useFactory: () => ({
-        type: "mysql",
-        host: "cottonsheep.com.br",
-        port: 3306,
-        username: "cotton82_admin",
-        password: "Cottonsheep1793*",
-        database: "cotton82_DB_DocBot_000000",
-        entities: [
-          "dist/client/**/*.entity{.ts,.js}"
-        ],
-        synchronize: false,
-      })
+      useClass: TenantOptions
     },
     )
   ],

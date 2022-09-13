@@ -40,4 +40,8 @@ export class AuthService {
             )
         }
     }
+
+    public decodeToken(token: string) {
+        return this.jwtService.decode(token)
+    }
 }

@@ -3,7 +3,7 @@ import { EmpresaService } from './empresa.service';
 import { CreateEmpresaDto } from './dto/create-empresa.dto';
 import { UpdateEmpresaDto } from './dto/update-empresa.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { Req, Request, Session, UseGuards } from '@nestjs/common/decorators';
+import { Request, UseGuards } from '@nestjs/common/decorators';
 
 @Controller('empresa')
 export class EmpresaController {
@@ -18,7 +18,6 @@ export class EmpresaController {
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Request() request) {
-    console.log(global.sessionStorage.getItem('clienteId'));
     return this.empresaService.findAll();
   }
 
