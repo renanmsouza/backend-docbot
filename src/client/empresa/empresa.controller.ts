@@ -4,7 +4,9 @@ import { CreateEmpresaDto } from './dto/create-empresa.dto';
 import { UpdateEmpresaDto } from './dto/update-empresa.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Request, UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('empresa')
 @Controller('empresa')
 export class EmpresaController {
   constructor(private readonly empresaService: EmpresaService) {}

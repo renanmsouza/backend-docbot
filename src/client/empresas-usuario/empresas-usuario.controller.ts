@@ -4,7 +4,9 @@ import { CreateEmpresasUsuarioDto } from './dto/create-empresas-usuario.dto';
 import { UpdateEmpresasUsuarioDto } from './dto/update-empresas-usuario.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('empresa')
 @Controller('empresas-usuario')
 export class EmpresasUsuarioController {
   constructor(private readonly empresasUsuarioService: EmpresasUsuarioService) {}

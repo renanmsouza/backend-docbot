@@ -27,9 +27,15 @@ import { CelularResponsavelModule } from './client/celular-responsavel/celular-r
 import { ContatoModule } from './client/contato/contato.module';
 import { GrupoContatoModule } from './client/grupo-contato/grupo-contato.module';
 import { TenantOptions } from './public/tenant/tenantOptions.class';
+import { ContatosGrupoModule } from './client/contatos-grupo/contatos-grupo.module';
+import { ExcecaoGrupoModule } from './client/excecao-grupo/excecao-grupo.module';
+import { EnviosRequisicaoModule } from './client/envios-requisicao/envios-requisicao.module';
 
 @Module({
   imports: [
+    ContatosGrupoModule,
+    ExcecaoGrupoModule,
+    EnviosRequisicaoModule,
     GrupoContatoModule,
     RequisicaoModule,
     EnvioModule,
@@ -71,7 +77,7 @@ import { TenantOptions } from './public/tenant/tenantOptions.class';
       name: "cliente",
       useClass: TenantOptions
     },
-    )
+    ),
   ],
   controllers: [
     AppController],

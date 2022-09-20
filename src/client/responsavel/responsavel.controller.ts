@@ -4,7 +4,9 @@ import { CreateResponsavelDto } from './dto/create-responsavel.dto';
 import { UpdateResponsavelDto } from './dto/update-responsavel.dto';
 import { UseGuards } from '@nestjs/common/decorators';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('responsavel')
 @Controller('responsavel')
 export class ResponsavelController {
   constructor(private readonly responsavelService: ResponsavelService) {}

@@ -4,7 +4,9 @@ import { CreateExcecaoContatoDto } from './dto/create-excecao-contato.dto';
 import { UpdateExcecaoContatoDto } from './dto/update-excecao-contato.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('contato')
 @Controller('execao-contato')
 export class ExcecaoContatoController {
   constructor(private readonly execaoContatoService: ExcecaoContatoService) {}

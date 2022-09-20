@@ -4,7 +4,9 @@ import { EnvioService } from './envio.service';
 import { CreateEnvioDto } from './dto/create-envio.dto';
 import { UpdateEnvioDto } from './dto/update-envio.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('envio')
 @Controller('envio')
 export class EnvioController {
   constructor(private readonly envioService: EnvioService) {}

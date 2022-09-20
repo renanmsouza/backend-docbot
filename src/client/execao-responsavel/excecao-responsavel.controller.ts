@@ -4,7 +4,9 @@ import { CreateExcecaoResponsavelDto } from './dto/create-excecao-responsavel.dt
 import { UpdateExcecaoResponsavelDto } from './dto/update-excecao-responsavel.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('responsavel')
 @Controller('excecao-responsavel')
 export class ExcecaoResponsavelController {
   constructor(private readonly excecaoResponsavelService: ExcecaoResponsavelService) { }

@@ -4,7 +4,9 @@ import { CreateEmailContatoDto } from './dto/create-email-contato.dto';
 import { UpdateEmailContatoDto } from './dto/update-email-contato.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('contato')
 @Controller('email-contato')
 export class EmailContatoController {
   constructor(private readonly emailContatoService: EmailContatoService) {}

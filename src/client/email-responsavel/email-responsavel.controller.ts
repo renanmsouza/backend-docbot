@@ -4,7 +4,9 @@ import { CreateEmailResponsavelDto } from './dto/create-email-responsavel.dto';
 import { UpdateEmailResponsavelDto } from './dto/update-email-responsavel.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('responsavel')
 @Controller('email-responsavel')
 export class EmailResponsavelController {
   constructor(private readonly emailResponsavelService: EmailResponsavelService) {}

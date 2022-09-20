@@ -4,7 +4,9 @@ import { CreateParametrosPrioridadeDto } from './dto/create-parametros-prioridad
 import { UpdateParametrosPrioridadeDto } from './dto/update-parametros-prioridade.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('prioridade')
 @Controller('parametros-prioridade')
 export class ParametrosPrioridadeController {
   constructor(private readonly parametrosPrioridadeService: ParametrosPrioridadeService) {}

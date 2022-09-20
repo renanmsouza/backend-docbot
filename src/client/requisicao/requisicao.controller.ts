@@ -4,7 +4,9 @@ import { CreateRequisicaoDto } from './dto/create-requisicao.dto';
 import { UpdateRequisicaoDto } from './dto/update-requisicao.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('requisicao')
 @Controller('requisicao')
 export class RequisicaoController {
   constructor(private readonly requisicaoService: RequisicaoService) {}

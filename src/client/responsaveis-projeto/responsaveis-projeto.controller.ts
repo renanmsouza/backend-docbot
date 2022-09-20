@@ -3,7 +3,9 @@ import { ResponsaveisProjetoService } from './responsaveis-projeto.service';
 import { CreateResponsaveisProjetoDto } from './dto/create-responsaveis-projeto.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('projeto')
 @Controller('responsaveis-projeto')
 export class ResponsaveisProjetoController {
   constructor(private readonly responsaveisProjetoService: ResponsaveisProjetoService) {}
